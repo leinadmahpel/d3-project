@@ -11,7 +11,10 @@ export const AxisLeft = ({yScale}: {yScale: ScaleBand<string>}): JSX.Element => 
                         // yScale() returns the coordinate of the top of the bar
                         // so if we want the center of the bar, we need to add half of the bandwidth to it
                         return (
-                              <g key={tickValue} transform={`translate(${0}, ${centerYCoordOfYAxisLabel})`}>
+                              <g className="tick" 
+                                    key={tickValue} 
+                                    transform={`translate(${0}, ${centerYCoordOfYAxisLabel})`}
+                              >
                                     <text
                                           key={tickValue}
                                           dy=".32em"

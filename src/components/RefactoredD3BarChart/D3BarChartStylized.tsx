@@ -12,12 +12,13 @@ const height = 500;
 
 const margin = {
       top: 20,
-      right: 20,
-      bottom: 20,
-      left: 200
-}
+      right: 30,
+      bottom: 65,
+      left: 220
+};
+const xAxisLabelOffset = 50;
 
-function D3BarChartRefactored(): JSX.Element {
+function D3BarChartStylized(): JSX.Element {
       const data = useData();
 
       if (!data) {
@@ -27,8 +28,8 @@ function D3BarChartRefactored(): JSX.Element {
       // these are accessor functions
       const yValueFunc = (d: any) => d.Country;
       const xValueFunc = (d: any) => d.Population;
-      const siFormat = format('.2s');
-      const xAxisTickFormatter = (tickVal: number) => siFormat(tickVal).replace('G', 'B');
+      const siFormat = format(".2s");
+      const xAxisTickFormatter = (tickVal: number) => siFormat(tickVal).replace('G', 'B'); 
       // function yValFunc(d: any) {
       //       return d.Country;
       // }
@@ -45,7 +46,7 @@ function D3BarChartRefactored(): JSX.Element {
       const yScale = scaleBand()
                         .domain(data.map(yValueFunc))
                         .range([0, innerHeight]) // the range is the pixel space coordinates that the domain will be mapped on to. accepts an array of two values i.e. minimum height of bar and maximum height of bar
-                        .padding(.005);
+                        .padding(.15);
                         // .paddingInner(.5)
                         // .paddingOuter(1);
                         
@@ -59,7 +60,7 @@ function D3BarChartRefactored(): JSX.Element {
                   If we want our bars to go all the way across the screen horizontally,
                   then the range will start at 0 and the max will be our width
       */
-      const maxPopStr = max(data, xValueFunc);
+      const maxPopStr = max(data, xValueFunc); // this is the d3.max() function not Math.max()
       const maxPop = maxPopStr ? +maxPopStr : 0;
       const xScale = scaleLinear()
                         .domain([0, maxPop]) // use d3.max() to find the max Population value in the dataset. pass the dataset and an accessor function as input
@@ -78,8 +79,20 @@ function D3BarChartRefactored(): JSX.Element {
                         // these are the x-axis ticks
                         {/* // we can move everything inside the group element to the right and down, by setting the transform attribute by setting something in the x and y direction */}
                         <g transform={`translate(${margin.left}, ${margin.top})`}>
-                              <AxisBottom xScale={xScale} innerHeight={innerHeight} tickFormat={xAxisTickFormatter}/>
+                              <AxisBottom 
+                                    xScale={xScale} 
+                                    innerHeight={innerHeight} 
+                                    tickFormat={xAxisTickFormatter}
+                              />
                               <AxisLeft yScale={yScale} />
+                              <text 
+                                    className="axis-label"
+                                    x={innerWidth / 2}
+                                    y={innerHeight + xAxisLabelOffset}
+                                    textAnchor="middle"
+                              >
+                                          Population
+                              </text>
                               <Marks 
                                     data={data} 
                                     xScale={xScale} 
@@ -94,4 +107,4 @@ function D3BarChartRefactored(): JSX.Element {
       );
 }
 
-export default D3BarChartRefactored;
+export default D3BarChartStylized;

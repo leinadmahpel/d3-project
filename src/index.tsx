@@ -9,6 +9,7 @@ import RenderingDataWithD3Part2 from './components/RenderingDataWithD3Part2';
 import D3BarChart from './components/D3BarChart/D3BarChart';
 import D3BarChartWithAxes from './components/D3BarChart/D3BarChartWithAxes';
 import D3BarChartRefactored from './components/RefactoredD3BarChart/D3BarChartRefactored';
+import D3BarChartStylized from './components/RefactoredD3BarChart/D3BarChartStylized';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,7 +19,8 @@ ReactDOM.render(
     {/* <RenderingDataWithD3Part2 /> */}
     {/* <D3BarChart /> */}
     {/* <D3BarChartWithAxes /> */}
-    <D3BarChartRefactored />
+    {/* <D3BarChartRefactored /> */}
+    <D3BarChartStylized />
   </React.StrictMode>,
   document.getElementById('root')
 );

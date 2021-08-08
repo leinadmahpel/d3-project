@@ -15,7 +15,7 @@ export const useData = () => {
       useEffect(() => {
             const row = (d: any) => {
                   // can add a new column into the data element
-                  d.Population = Math.round(+d['2020']);//parseFloat(d['2020']);
+                  d.Population = Math.round(+d['2020'] * 1000);//parseFloat(d['2020']); data is in thousands so need to multiple by 1000
                   return d;
             }
             csv(csvUrl, row).then((data: DSVRowArray<string> | any) => {

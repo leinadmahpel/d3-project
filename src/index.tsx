@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import RenderingDataWithD3 from './components/RenderingDataWithD3';
 import RenderingDataWithD3Part2 from './components/RenderingDataWithD3Part2';
 import D3BarChart from './components/D3BarChart/D3BarChart';
+import D3BarChartWithAxes from './components/D3BarChart/D3BarChartWithAxes';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,7 +15,8 @@ ReactDOM.render(
     {/* <LoadingData /> */}
     {/* <RenderingDataWithD3 /> */}
     {/* <RenderingDataWithD3Part2 /> */}
-    <D3BarChart />
+    {/* <D3BarChart /> */}
+    <D3BarChartWithAxes />
   </React.StrictMode>,
   document.getElementById('root')
 );

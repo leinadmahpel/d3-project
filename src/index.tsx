@@ -1,12 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './components/App';
+import LoadingData from './components/LoadingData';
 import reportWebVitals from './reportWebVitals';
+import RenderingDataWithD3 from './components/RenderingDataWithD3';
+import RenderingDataWithD3Part2 from './components/RenderingDataWithD3Part2';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
+    {/* <LoadingData /> */}
+    {/* <RenderingDataWithD3 /> */}
+    <RenderingDataWithD3Part2 />
   </React.StrictMode>,
   document.getElementById('root')
 );

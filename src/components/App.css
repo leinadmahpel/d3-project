@@ -1,0 +1,17 @@
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+pre {
+  font-size: 7em;
+}

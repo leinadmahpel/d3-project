@@ -1,3 +1,5 @@
+A program that loads in some [data about CSS named colors](https://gist.github.com/leinadmahpel/e4f1faaa15761314064108ccb65b0049)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -80,6 +80,7 @@ function D3BarChartWithAxes(): JSX.Element {
             <>
                   {/* <header>D3 Bar Chart showing top 10 of UN World Population 2019 with Axes</header> */}
                   <svg width={width} height={height} style={{backgroundColor: 'lightBlue'}}>
+                        // these are the x-axis ticks
                         {/* // we can move everything inside the group element to the right and down, by setting the transform attribute by setting something in the x and y direction */}
                         <g transform={`translate(${margin.left}, ${margin.top})`}>
                               {xScale.ticks().map(tickValue => (
@@ -87,7 +88,7 @@ function D3BarChartWithAxes(): JSX.Element {
                                     // to see props we can pass into SVGLineElement: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/line
                                     // x1 is where the line starts in the x direction
                                     // since tickValue is a value from the scale's domain, we can use our xScale to map that tickValue from the domain to the range
-                                    <g transform={`translate(${xScale(tickValue)}, ${0})`}>
+                                    <g key={tickValue} transform={`translate(${xScale(tickValue)}, ${0})`}>
                                           <line 
                                                 // x1, y1, x2 are set to 0 by default so we can omit them if we want to
                                                 // x1={0} // top of line starts at
@@ -112,15 +113,17 @@ function D3BarChartWithAxes(): JSX.Element {
                                     </g>
                               ))}
 
+                              // these are the y-axis ticks
                               // if we call domain() without passing in any arguments, it will return whatever we passed in initially when we set domain() for yScale
                               {yScale.domain().map(tickValue => {
                                     const yCoordOfYAxisLabel = yScale(tickValue);
                                     const centerYCoordOfYAxisLabel = yCoordOfYAxisLabel ? yCoordOfYAxisLabel + (yScale.bandwidth() / 2) : 0;
                                     // yScale() returns the coordinate of the top of the bar
                                     // so if we want the center of the bar, we need to add half of the bandwidth to it
-                                    return (<g transform={`translate(${0}, ${centerYCoordOfYAxisLabel})`}>
+                                    return (<g key={tickValue} transform={`translate(${0}, ${centerYCoordOfYAxisLabel})`}>
                                                 
                                                 <text 
+                                                      key={tickValue}
                                                       dy=".32em"
                                                       x={-3}
                                                       // y={centerYCoordOfYAxisLabel}
@@ -132,8 +135,10 @@ function D3BarChartWithAxes(): JSX.Element {
                                     )
                               })}
 
+                              // These are the bars
                               {data.map((d: any) => (
                                     <rect 
+                                          key={d.Country}
                                           x={0} 
                                           y={yScale(d.Country)} // use d3.bandScale
                                           width={xScale(d.Population)} // use d3.LinearScale

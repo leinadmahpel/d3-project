@@ -59,7 +59,7 @@ function D3BarChart(): JSX.Element {
       // to figure out the width of the bars, which will be derived from the population of each country, we will use a construct called a LinearScale
       return (
             <>
-                  <header>Rendering Data with React and D3 Part2 - With a Radial Burst!</header>
+                  <header>D3 Bar Chart showing top 10 of UN World Population 2019</header>
                   <svg width={width} height={height}>
                         {data.map((d: any) => (
                               <rect 

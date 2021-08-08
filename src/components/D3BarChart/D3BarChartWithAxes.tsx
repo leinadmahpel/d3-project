@@ -11,7 +11,7 @@ const margin = {
       top: 20,
       right: 20,
       bottom: 20,
-      left: 20
+      left: 200
 }
 
 function D3BarChartWithAxes(): JSX.Element {
@@ -72,7 +72,8 @@ function D3BarChartWithAxes(): JSX.Element {
 
       // we can view the x-axis labels i.e. ticks using xScale.ticks()
             // read more here: https://github.com/d3/d3-scale#continuous_ticks
-      console.log(xScale.ticks());
+      console.log(xScale.ticks()); // all ticks on the x-axis
+      console.log(yScale.domain()); // all ticks on the y-axis
 
       // to figure out the width of the bars, which will be derived from the population of each country, we will use a construct called a LinearScale
       return (
@@ -110,6 +111,27 @@ function D3BarChartWithAxes(): JSX.Element {
                                           </text>
                                     </g>
                               ))}
+
+                              // if we call domain() without passing in any arguments, it will return whatever we passed in initially when we set domain() for yScale
+                              {yScale.domain().map(tickValue => {
+                                    const yCoordOfYAxisLabel = yScale(tickValue);
+                                    const centerYCoordOfYAxisLabel = yCoordOfYAxisLabel ? yCoordOfYAxisLabel + (yScale.bandwidth() / 2) : 0;
+                                    // yScale() returns the coordinate of the top of the bar
+                                    // so if we want the center of the bar, we need to add half of the bandwidth to it
+                                    return (<g transform={`translate(${0}, ${centerYCoordOfYAxisLabel})`}>
+                                                
+                                                <text 
+                                                      dy=".32em"
+                                                      x={-3}
+                                                      // y={centerYCoordOfYAxisLabel}
+                                                      style={{textAnchor: 'end'}}
+                                                >
+                                                      {tickValue}
+                                                </text>
+                                          </g>
+                                    )
+                              })}
+
                               {data.map((d: any) => (
                                     <rect 
                                           x={0} 
